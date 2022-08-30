@@ -1,0 +1,284 @@
+* {
+    font-family: Inter, sans-serif;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 600px){
+    html{
+        width: 600px;
+        overflow: auto;
+    }
+}
+
+/* navbar */
+
+.navbar {
+    background-color: #F55A5A;
+    display: flex;
+    height: 55px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    position: sticky;
+    top: 0;
+    padding: 10px;
+    color:white;
+}
+
+.navbar > *:hover {
+    cursor: pointer;
+}
+
+.navbar--logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar--logo--icon {
+    width: 30px;
+}
+
+.navbar--logo--text {
+
+    font-weight: 500;
+}
+
+.navbar--profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.navbar--profile--text:hover, .navbar--section:hover {
+    color:rgb(225, 216, 216);
+}
+
+.navbar--profile--profile-icon {
+    width: 30px;
+}
+
+/* add event button */
+
+.button--add-event {
+    margin: 10px 150px;
+    position: relative;
+}
+
+/* events */
+
+.entry {
+    margin: 20px 150px;
+    display: grid;
+    grid-template-columns: 350px auto;
+    grid-gap: 15px;
+    align-items: center;
+    background-color: rgb(252, 236, 236);
+    border: black 2px solid;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 600px;
+}
+
+.entry--location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.entry--location--title {
+    color: #F55A5A;
+    font-size: 30px;
+    text-align: center;
+}
+
+.entry--location--pin {
+    height: 20px;
+}
+
+.entry--location--country {
+    font-weight: 700;
+}
+
+.entry--location--link:link, .location--link:visited {
+    color: gray;
+}
+
+.entry--description {
+    font-size: 18px;
+}
+
+.entry--join {
+    justify-self: end;
+    border-radius: 5px;
+    background-color: #F55A5A;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    width: 220px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+  
+.entry--join span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.entry--join span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.entry--join:hover span {
+    padding-right: 25px;
+}
+  
+.entry--join:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* profile page */
+
+.profile {
+    margin: 20px 150px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 25px 25px auto;
+    grid-gap: 15px;
+    background-color: rgb(252, 236, 236);
+    border: black 2px solid;
+    padding: 15px;
+}
+
+.profile--photo {
+    grid-row: 1/5;
+    width: 250px;
+}
+
+.profile--info {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile--info--name {
+    font-size: 30px;
+}
+
+.profile--rating {
+    justify-self: start;
+    display: flex;
+    align-items: center;
+}
+
+.profile--rating--stars {
+    height: 40px;
+    padding: 0 5px;
+}
+
+.profile--rating--stars:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.profile--rating--stars:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:25px;
+    color:#ccc;
+}
+.profile--rating--stars:not(:checked) > label:before {
+    content: '★ ';
+}
+.profile--rating--stars > input:checked ~ label {
+    color: #ffc700;    
+}
+.profile--rating--stars:not(:checked) > label:hover,
+.profile--rating--stars:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.profile--rating--stars > input:checked + label:hover,
+.profile--rating--stars > input:checked + label:hover ~ label,
+.profile--rating--stars > input:checked ~ label:hover,
+.profile--rating--stars > input:checked ~ label:hover ~ label,
+.profile--rating--stars > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.profile--events {
+    grid-column: 1/3;
+
+}
+
+.profile--events--event {
+    margin: 0 -164px;
+}
+
+/* REGISTR AND LOGIN PAGE */
+
+.form--register, .form--login, 
+.form--profile, .form--event {
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form--register--input, .form--login--input, 
+.form--profile--input, .form--event--input {
+    font-family: "Karla", sans-serif;
+    border-radius: 5px;
+    border: 1px solid #D5D4D8;
+    text-indent: 5px;
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.form--register--button, .form--login--button, 
+.form--profile--button, .form--event--button,
+.button--add-event {
+    border-radius: 5px;
+    background-color: #F55A5A;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.form--login > p {
+    margin-top: 10px;
+}
+
+.form--profile > textarea {
+    resize: none;
+    height: 100px;
+}
+
+.form--profile--photo {
+    margin-bottom: 20px;
+}

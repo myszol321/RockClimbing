@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import LoginPage from "./components/LoginPage"
+import RegisterPage from "./components/RegisterPage"
+import Navbar from "./components/Navbar"
+import Event from "./components/Event"
+import data from "./data"
+import ProfilePage from "./components/ProfilePage"
+import AddEvent from "./components/AddEvent"
+import EditProfile from "./components/EditProfile"
+import MainPage from "./components/MainPage"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+    const events = data.map(entry => {
+        return(
+            <Event
+                key={entry.id}
+                {...entry}
+            />
+        )
+    })
+    return (
+        <div>
+            <Navbar />
+            <LoginPage />
+             <RegisterPage />
+            <button className="button--add-event">
+                + Dodaj własne wydarzenie
+            </button>
+            {events}
+            {/* <ProfilePage />
+            <AddEvent />
+            <EditProfile />
+            <MainPage /> */}
+        </div>
+    )
 }
 
-export default App;
