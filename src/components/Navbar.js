@@ -14,7 +14,6 @@ export default function Navbar() {
                 />
                 <h2 className="navbar--logo--text">Rock climbing</h2>
             </div>
-            <h3 className="navbar--section">Wydarzenia</h3>
             
             {loggedIn ?
             <div className="navbar--profile">

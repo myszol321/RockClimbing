@@ -56,7 +56,7 @@ body {
     align-items: center;
     gap: 5px;
 }
-.navbar--profile--text:hover, .navbar--section:hover {
+.navbar--profile--text:hover, .navbar--logo--text:hover {
     color:rgb(225, 216, 216);
 }
 
@@ -64,17 +64,36 @@ body {
     width: 30px;
 }
 
+/* MAIN PAGE */
+.main-page {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
 /* add event button */
 
 .button--add-event {
-    margin: 10px 150px;
+    margin: 20px 0;
     position: relative;
+    transition: all 0.5s;
+}
+
+.button--add-event:hover {
+    background-color: #e23e3e;
 }
 
 /* events */
 
+.events {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .entry {
-    margin: 20px 150px;
+    /* margin: 20px 150px; */
     display: grid;
     grid-template-columns: 350px auto;
     grid-gap: 15px;
@@ -83,39 +102,41 @@ body {
     border: black 2px solid;
     border-radius: 10px;
     padding: 15px;
+    /* margin-bottom: 20px; */
     min-width: 600px;
 }
 
-.entry--location {
+.entry--location, .entry--location {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-.entry--location--title {
+.entry--location--title, .event--location--title {
     color: #F55A5A;
     font-size: 30px;
     text-align: center;
 }
 
-.entry--location--pin {
+.entry--location--pin, .event--location--pin {
     height: 20px;
 }
 
-.entry--location--country {
+.entry--location--country, .event--location--country {
     font-weight: 700;
 }
 
-.entry--location--link:link, .location--link:visited {
+.entry--location--link:link, .entry--location--link:visited,
+.event--location--link:link, .event--location--link:visited {
     color: gray;
 }
 
-.entry--description {
+.entry--description, .event--description {
     font-size: 18px;
 }
 
-.entry--join {
+.entry--join, .event--join {
     justify-self: end;
     border-radius: 5px;
     background-color: #F55A5A;
@@ -146,14 +167,38 @@ body {
     transition: 0.5s;
 }
   
+.entry--join:hover {
+    background-color: #e23e3e;
+}
+
 .entry--join:hover span {
     padding-right: 25px;
+    
 }
   
 .entry--join:hover span:after {
     opacity: 1;
     right: 0;
 }
+
+.event {
+    /* margin: 20px 150px; */
+    display: grid;
+    grid-template-columns: 350px auto;
+    grid-gap: 15px;
+    align-items: center;
+    background-color: rgb(252, 236, 236);
+    border: black 2px solid;
+    border-radius: 10px;
+    padding: 15px;
+    /* margin-bottom: 20px; */
+    min-width: 600px;
+}
+
+.event--join:hover {
+    background-color: #e23e3e;
+}
+
 
 /* profile page */
 
