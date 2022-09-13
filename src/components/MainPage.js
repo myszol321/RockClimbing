@@ -14,14 +14,14 @@ export default function MainPage() {
         <div className="main-page">
             {/* <LoginPage />
             <RegisterPage /> */}
-            <button className="button--add-event">
-                + Dodaj własne wydarzenie
-            </button>
-            <EventList />  
-            {/* <ProfilePage /> */}
-            {/* <AddEvent />
-            <EditProfile /> */}
-            <EventPage />
+            {/* <button className="button--add-event">
+                    + Dodaj własne wydarzenie
+            </button> */}
+            {/* <EventList />   */}
+            <ProfilePage />
+            {/* <AddEvent /> */}
+            {/* <EditProfile /> */}
+            {/* <EventPage /> */}
             
         </div>
     )

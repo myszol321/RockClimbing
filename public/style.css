@@ -66,8 +66,8 @@ body {
 
 /* MAIN PAGE */
 .main-page {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
 }
 
 /* add event button */
@@ -203,19 +203,21 @@ body {
 /* profile page */
 
 .profile {
-    margin: 20px 150px;
     display: grid;
     grid-template-columns: 250px auto;
     grid-template-rows: 25px 25px auto;
     grid-gap: 15px;
     background-color: rgb(252, 236, 236);
     border: black 2px solid;
+    border-radius: 5px;;
     padding: 15px;
+    margin-top: 20px;
 }
 
 .profile--photo {
     grid-row: 1/5;
     width: 250px;
+    border-radius: 5px;
 }
 
 .profile--info {
@@ -273,11 +275,10 @@ body {
 
 .profile--events {
     grid-column: 1/3;
-
 }
 
-.profile--events--event {
-    margin: 0 -164px;
+.profile--events > * {
+    margin-top: 10px;
 }
 
 /* REGISTR AND LOGIN PAGE */

@@ -17,6 +17,7 @@ export default function EventPage(props) {
             <div className="event--info">
                 <p>Dodano przez: <b>Ola Myszka</b></p>
                 <p>Wymagany sprzęt: <b>Ola Myszka</b></p>
+                <p>Liczba osób: <b>2</b></p>
             </div>
             <button className="event--join">Dołącz do wydarzenia</button>    
         </div>

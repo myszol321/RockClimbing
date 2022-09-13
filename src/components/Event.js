@@ -10,11 +10,10 @@ export default function Event(props) {
                     <img className="entry--location--pin" src={pin}/>
                     <span className="entry--location--country">{props.country.toUpperCase()}</span>
                 </div>
-                <a className="entry--location--link" href={props.mapsLink} target="_blank">Otwórz Mapy Google</a>
+                {/* <a className="entry--location--link" href={props.mapsLink} target="_blank">Otwórz Mapy Google</a> */}
             </div>
             
             <h3>{props.date}</h3>
-            <p></p>
             <div className="entry--info">
                 <p>Dodano przez: <b>Ola Myszka</b></p>
             </div>

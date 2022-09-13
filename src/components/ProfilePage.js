@@ -1,18 +1,9 @@
 import React from 'react'
 import foto from '../images/foto.png'
-import data from '../data'
-import Event from './Event'
+import EventList from './EventList'
 
 export default function ProfilePage() {
 
-    const events = data.map(entry => {
-        return(
-            <Event
-                key={entry.id}
-                {...entry}
-            />
-        )
-    })
 
     return (
         <div className="profile">
@@ -57,9 +48,7 @@ export default function ProfilePage() {
             
             <div className="profile--events">
                 <h2>Utworzone wydarzenia</h2>
-                <div className="profile--events--event">
-                    {events}
-                </div>
+                <EventList />
             </div>
         </div>
     )
