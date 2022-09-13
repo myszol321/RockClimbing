@@ -9,13 +9,46 @@ export default function RegisterPage() {
         confirmPassword: ""
     })
 
+    function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: value
+            }
+        })
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+
+        if(!formData.login) {
+            alert("Niepoprawna nazwa użytkownika");
+        }
+        else if(!formData.email) {
+            alert("Niepoprawny adres email");
+        }
+        else if(!formData.password) {
+            alert("Niepoprawne hasło");
+        }
+        else if(!formData.confirmPassword || formData.confirmPassword != formData.password) {
+            alert("Hasła się nie zgadzają");
+        }
+        else {
+            alert("Zarejestrowano poprawnie");
+        }
+        console.log(formData)
+    }
+
     return (
-        <form className="form--register">
+        <form className="form--register" onSubmit={handleSubmit}>
             <input 
                 type="text"
                 className="form--register--input" 
                 placeholder="Nazwa użytkownika"
                 name="login"
+                value={formData.login}
+                onChange={handleChange}
             />
 
             <input 
@@ -23,20 +56,26 @@ export default function RegisterPage() {
                 className="form--register--input" 
                 placeholder="Email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
             />
 
             <input 
-                type="text"
+                type="password"
                 className="form--register--input"
                 placeholder="Hasło"
-                name="password" 
+                name="password"
+                value={formData.password}
+                onChange={handleChange} 
             />
             
             <input 
-                type="text" 
+                type="password" 
                 placeholder="Ponów hasło"
                 className="form--register--input"
-                name="confirmPassword" 
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
             />
             
             <button

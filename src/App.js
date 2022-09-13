@@ -22,16 +22,16 @@ export default function App() {
     return (
         <div>
             <Navbar />
-            <LoginPage />
-             <RegisterPage />
+            {/* <LoginPage />
+            <RegisterPage />
             <button className="button--add-event">
                 + Dodaj własne wydarzenie
             </button>
             {events}
-            {/* <ProfilePage />
-            <AddEvent />
+            <ProfilePage />
+            <AddEvent /> */}
             <EditProfile />
-            <MainPage /> */}
+            {/* <MainPage /> */}
         </div>
     )
 }

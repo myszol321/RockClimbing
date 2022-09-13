@@ -12,8 +12,24 @@ export default function EditProfile() {
         description: "",
         gear: ""
     })
+
+    function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
+    }
+    
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log(formData)
+    }
+
     return (
-        <form className="form--profile">
+        <form className="form--profile" onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Nazwa użytkownika"
