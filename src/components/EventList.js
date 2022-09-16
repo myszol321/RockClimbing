@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Event from './Event'
 import data from "../data"
 
@@ -12,8 +13,15 @@ export default function EventList(props) {
         )
     })
     return (
-        <div className="events">
-            {events}
+        <div>
+            <button className="button--add-event">
+                <Link to="/addEvent">
+                    + Dodaj własne wydarzenie
+                </Link>    
+            </button>
+            <div className="events">
+                {events}
+            </div>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function EditProfile() {
     const [formData, setFormData] = React.useState({
@@ -91,7 +92,9 @@ export default function EditProfile() {
                 className="form--profile--button"
                 
             >
-                Zapisz zmiany
+                <Link to="/profilePage">
+                    Zapisz zmiany
+                </Link>
             </button>
         </form>
     )

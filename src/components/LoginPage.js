@@ -1,14 +1,18 @@
 import React from "react"
+import {Link} from "react-router-dom"
+import {Navigate} from "react-router-dom"
 
-export default function LoginPage() {
+export default function LoginPage(props) {
 
     const [formData, setFormData] = React.useState({
         login:"",
         password: ""
     })
 
+    const [successfulSubmit, setSuccessfulSubmit] = React.useState(false)
+
     function handleChange(event) {
-        const {name, value, type, checked} = event.target
+        const {name, value} = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
@@ -25,6 +29,10 @@ export default function LoginPage() {
         }
         else if(!formData.password) {
             alert("Niepoprawne hasło");
+        }
+        else {
+            setSuccessfulSubmit(true)
+            props.logInfo()
         }
         console.log(formData)
     }
@@ -52,12 +60,15 @@ export default function LoginPage() {
             <button
                 className="form--login--button"
             >
-                Zaloguj się
+                Zaloguj się   
             </button>
 
             <p>Nie masz konta?</p>
-            <a href="">Zarejestruj się</a>
+            <Link to="/registerPage">
+                <p>Zarejestruj się</p>
+            </Link>
             
+            {successfulSubmit && <Navigate to="/profilePage" replace={true}  />}
         </form>
     )
 }

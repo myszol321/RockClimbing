@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import pin from '../images/pin.png'
 
 export default function Event(props) {
@@ -17,7 +18,15 @@ export default function Event(props) {
             <div className="entry--info">
                 <p>Dodano przez: <b>Ola Myszka</b></p>
             </div>
-            <button className="entry--join"><span>Czytaj więcej </span></button>    
+            <button className="entry--join">
+
+                    <span>
+                    <Link to="/eventPage">
+                        Czytaj więcej
+                    </Link>
+                    </span>
+
+            </button>    
         </div>
     )
 }

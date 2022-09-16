@@ -329,3 +329,8 @@ body {
     margin-bottom: 20px;
 }
 
+/* LINK */
+
+Link:link, Link:visited {
+    color: gray;
+}

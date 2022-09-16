@@ -1,4 +1,6 @@
 import React from "react"
+import ConditionalLink from "./ConditionalLink"
+import {Navigate} from "react-router-dom"
 
 export default function RegisterPage() {
 
@@ -8,6 +10,8 @@ export default function RegisterPage() {
         password: "",
         confirmPassword: ""
     })
+
+    const [successfulSubmit, setSuccessfulSubmit] = React.useState(false)
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -36,6 +40,7 @@ export default function RegisterPage() {
         }
         else {
             alert("Zarejestrowano poprawnie");
+            setSuccessfulSubmit(true)
         }
         console.log(formData)
     }
@@ -78,12 +83,14 @@ export default function RegisterPage() {
                 onChange={handleChange}
             />
             
-            <button
-                type="submit"
-                className="form--register--button"
-            >
-                Zarejestruj się
-            </button>
+                <button
+                    type="submit"
+                    className="form--register--button"
+                >
+                    Zarejestruj się
+                </button>
+                {successfulSubmit && <Navigate to="/loginPage" replace={true}  />}
         </form>
+        
     )
 }

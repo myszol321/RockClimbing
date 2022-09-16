@@ -2,9 +2,7 @@ import React from 'react'
 import foto from '../images/foto.png'
 import EventList from './EventList'
 
-export default function ProfilePage() {
-
-
+export default function ProfilePage(props) {
     return (
         <div className="profile">
             <img className="profile--photo" src={foto} alt=""/>

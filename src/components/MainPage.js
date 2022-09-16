@@ -6,6 +6,8 @@ import AddEvent from "./AddEvent"
 import EditProfile from "./EditProfile"
 import EventPage from "./EventPage"
 import EventList from "./EventList"
+import {Route, Link} from "react-router-dom"
+
 
 export default function MainPage() {
     
@@ -13,16 +15,15 @@ export default function MainPage() {
     return (
         <div className="main-page">
             {/* <LoginPage />
-            <RegisterPage /> */}
-            {/* <button className="button--add-event">
+            <RegisterPage />
+            <button className="button--add-event">
                     + Dodaj własne wydarzenie
-            </button> */}
-            {/* <EventList />   */}
+            </button>
+            <EventList />  
             <ProfilePage />
-            {/* <AddEvent /> */}
-            {/* <EditProfile /> */}
-            {/* <EventPage /> */}
-            
+            <AddEvent />
+            <EditProfile />
+            <EventPage />   */}
         </div>
     )
 }

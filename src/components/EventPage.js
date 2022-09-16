@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import pin from '../images/pin.png'
 
 export default function EventPage(props) {
@@ -19,7 +20,11 @@ export default function EventPage(props) {
                 <p>Wymagany sprzęt: <b>Ola Myszka</b></p>
                 <p>Liczba osób: <b>2</b></p>
             </div>
-            <button className="event--join">Dołącz do wydarzenia</button>    
+            <button className="event--join">
+                <Link to="/">
+                    Dołącz do wydarzenia
+                </Link>
+            </button>    
         </div>
     )
 }
