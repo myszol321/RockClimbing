@@ -1,6 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
-import {Navigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 export default function LoginPage(props) {
 
@@ -9,7 +9,7 @@ export default function LoginPage(props) {
         password: ""
     })
 
-    const [successfulSubmit, setSuccessfulSubmit] = React.useState(false)
+    const navigate = useNavigate();
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -31,7 +31,7 @@ export default function LoginPage(props) {
             alert("Niepoprawne hasło");
         }
         else {
-            setSuccessfulSubmit(true)
+            navigate('/profilePage')
             props.logInfo()
         }
         console.log(formData)
@@ -67,8 +67,6 @@ export default function LoginPage(props) {
             <Link to="/registerPage">
                 <p>Zarejestruj się</p>
             </Link>
-            
-            {successfulSubmit && <Navigate to="/profilePage" replace={true}  />}
         </form>
     )
 }

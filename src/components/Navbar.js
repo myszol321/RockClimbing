@@ -17,8 +17,8 @@ export default function Navbar(props) {
 
             {props.userInfo.loggedIn
             ?   
-            <div className="navbar--profile">
-                <Link to="/profilePage"  className="navbar--profile">
+            <div className="navbar--profile-section">
+                <Link to="/profilePage" className="navbar--profile">
                     <img
                     src={profileIcon}
                     className="navbar--profile--profile-icon"

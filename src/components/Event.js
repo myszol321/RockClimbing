@@ -25,8 +25,7 @@ export default function Event(props) {
                         Czytaj więcej
                     </Link>
                     </span>
-
-            </button>    
+            </button>
         </div>
     )
 }

@@ -12,6 +12,7 @@ export default function EventList(props) {
             />
         )
     })
+
     return (
         <div>
             <button className="button--add-event">

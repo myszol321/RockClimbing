@@ -36,6 +36,7 @@ export default function EditProfile() {
                 placeholder="Nazwa użytkownika"
                 className="form--profile--input"
                 name="login"
+                onChange={handleChange}
             />
 
             <input
@@ -43,6 +44,7 @@ export default function EditProfile() {
                 placeholder="Hasło"
                 className="form--profile--input"
                 name="password"
+                onChange={handleChange}
             />
 
             <label for="pic">Dodaj zdjęcie profilowe:</label>
@@ -52,6 +54,7 @@ export default function EditProfile() {
                 placeholder="Zdjęcie profilowe"
                 className="form--profile--photo"
                 name="pic"
+                onChange={handleChange}
             />
 
             <input
@@ -59,6 +62,7 @@ export default function EditProfile() {
                 placeholder="Wiek"
                 className="form--profile--input"
                 name="age"
+                onChange={handleChange}
             />
 
             <input
@@ -66,6 +70,7 @@ export default function EditProfile() {
                 placeholder="Miasto"
                 className="form--profile--input"
                 name="city"
+                onChange={handleChange}
             />
 
             <input
@@ -73,26 +78,28 @@ export default function EditProfile() {
                 placeholder="Telefon"
                 className="form--profile--input"
                 name="phone"
+                onChange={handleChange}
             />
 
             <textarea
                 placeholder="O mnie..."
                 className="form--profile--input"
                 name="Description"
+                onChange={handleChange}
             />
 
             <textarea
                 placeholder="Posiadany sprzęt"
                 className="form--profile--input"
                 name="gear"
+                onChange={handleChange}
             />
 
             <button
                 type="submit"
                 className="form--profile--button"
-                
             >
-                <Link to="/profilePage">
+                <Link to="/profilePage" className="text-link">
                     Zapisz zmiany
                 </Link>
             </button>

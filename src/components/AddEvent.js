@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AddEvent() {
     const [formData, setFormData] = React.useState({
@@ -140,12 +141,16 @@ export default function AddEvent() {
                     name="numberOfPeople"
                     value={formData.numberOfPeople}
                     onChange={handleChange}
+                    min="1"
+                    max="10"
                 />
 
                 <button
                     className="form--event--button"
                 >
-                    Dodaj wydarzenie
+                    <Link to="/">
+                        Dodaj wydarzenie
+                    </Link>        
                 </button>
             </form>
             {/* {modal && <Modal error={modalText}/>} */}

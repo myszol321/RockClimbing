@@ -47,7 +47,6 @@ body {
 }
 
 .navbar--logo--text {
-
     font-weight: 500;
 }
 
@@ -56,6 +55,12 @@ body {
     align-items: center;
     gap: 5px;
 }
+.navbar--profile-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .navbar--profile--text:hover, .navbar--logo--text:hover {
     color:rgb(225, 216, 216);
 }
@@ -85,15 +90,15 @@ body {
 /* events */
 
 .events {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 15px;
-    align-items: center;
-    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
 }
 
 .entry {
     /* margin: 20px 150px; */
+    position: relative;
     display: grid;
     grid-template-columns: 350px auto;
     grid-gap: 15px;
@@ -103,10 +108,11 @@ body {
     border-radius: 10px;
     padding: 15px;
     /* margin-bottom: 20px; */
-    min-width: 600px;
+    min-width: 650px;
+    margin-bottom: 20px;
 }
 
-.entry--location, .entry--location {
+.entry--location, .event--location {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,7 +188,7 @@ body {
 }
 
 .event {
-    /* margin: 20px 150px; */
+    position: relative;
     display: grid;
     grid-template-columns: 350px auto;
     grid-gap: 15px;
@@ -191,7 +197,7 @@ body {
     border: black 2px solid;
     border-radius: 10px;
     padding: 15px;
-    /* margin-bottom: 20px; */
+    margin-top: 20px;
     min-width: 600px;
 }
 
@@ -199,6 +205,21 @@ body {
     background-color: #e23e3e;
 }
 
+.event--delete {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.event--delete--options {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
 
 /* profile page */
 
@@ -331,6 +352,7 @@ body {
 
 /* LINK */
 
-Link:link, Link:visited {
-    color: gray;
+a {
+    text-decoration: none;
+    color: white;
 }
