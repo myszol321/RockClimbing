@@ -11,7 +11,7 @@ export default function EditProfile() {
         city: "",
         age: "",
         description: "",
-        gear: ""
+        equipment: ""
     })
 
     function handleChange(event) {
@@ -91,7 +91,7 @@ export default function EditProfile() {
             <textarea
                 placeholder="Posiadany sprzęt"
                 className="form--profile--input"
-                name="gear"
+                name="equipment"
                 onChange={handleChange}
             />
 

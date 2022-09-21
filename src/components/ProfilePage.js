@@ -34,7 +34,7 @@ export default function ProfilePage(props) {
                 info o sb info o sb info o sb info o sb info o sb 
             </p>
             
-            <div className="profile--gear">
+            <div className="profile--equipment">
                 <h2>Posiadany sprzęt:</h2>
                 <ul>
                     <li>lina</li>

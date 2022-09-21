@@ -11,7 +11,9 @@ export default function AddEvent() {
         endDate: "",
         profile: "",
         gear: "",
-        numberOfPeople: ""
+        numberOfPeople: "",
+        climbingLevel: "",
+        trainingLength: ""
     })
 
     const [isDisabled, setIsDisabled] = React.useState(false)
@@ -140,6 +142,28 @@ export default function AddEvent() {
                     className="form--event--input"
                     name="numberOfPeople"
                     value={formData.numberOfPeople}
+                    onChange={handleChange}
+                    min="1"
+                    max="10"
+                />
+
+                <input
+                    type="number"
+                    placeholder="Climbing level"
+                    className="form--event--input"
+                    name="climbingLevel"
+                    value={formData.climbingLevel}
+                    onChange={handleChange}
+                    min="1"
+                    max="10"
+                />
+
+                <input
+                    type="number"
+                    placeholder="Training length"
+                    className="form--event--input"
+                    name="training length"
+                    value={formData.trainingLength}
                     onChange={handleChange}
                     min="1"
                     max="10"
