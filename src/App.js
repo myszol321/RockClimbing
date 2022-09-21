@@ -1,6 +1,7 @@
 import React from "react"
 import Navbar from "./components/Navbar"
 import {Routes, Route} from "react-router-dom"
+
 import ProfilePage from "./components/ProfilePage"
 import EventList from "./components/EventList"
 import EventPage from "./components/EventPage"
@@ -8,6 +9,7 @@ import AddEvent from "./components/AddEvent"
 import EditProfile from "./components/EditProfile"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
+import AllUsers from "./components/AllUsers"
 
 export default function App() {
     const [userInfo, setUserInfo] = React.useState({
@@ -31,7 +33,7 @@ export default function App() {
             <Navbar userInfo={userInfo} changeLoggedIn={changeLoggedIn}/>
             <div className="main-page">
                 <Routes>
-                    <Route path="/" element={<EventList />} />
+                    <Route path="/" element={<AllUsers />} />
                     <Route exact path="/profilePage" element={<ProfilePage userInfo={userInfo}/>}/>
                     <Route path="/addEvent" element={<AddEvent />}/>
                     <Route path="/editProfile" element={<EditProfile />}/>
