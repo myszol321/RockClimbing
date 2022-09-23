@@ -3,12 +3,13 @@ import foto from '../images/foto.png'
 import EventList from './EventList'
 
 export default function ProfilePage(props) {
+
     return (
         <div className="profile">
             <img className="profile--photo" src={foto} alt=""/>
             <div className="profile--info">
-                <h1 className="profile--info--name">{props.login}</h1>
-                <p className="profile--info--description">wiek, miasto</p>   
+                <h1 className="profile--info--name">{props.userInfo.first_name} {props.userInfo.last_name}</h1>
+                <p className="profile--info--description">{props.userInfo.age}, {props.userInfo.city}</p>   
             </div>
             <div className="profile--rating">
                 <div className="profile--rating--stars">
@@ -27,11 +28,7 @@ export default function ProfilePage(props) {
             </div>
             
             <p className="profile--description">
-                info o sb info o sb info o sb info o sb info o sb 
-                info o sb info o sb info o sb info o sb info o sb 
-                info o sb info o sb info o sb info o sb info o sb 
-                info o sb info o sb info o sb info o sb info o sb 
-                info o sb info o sb info o sb info o sb info o sb 
+                {props.userInfo.description}
             </p>
             
             <div className="profile--equipment">

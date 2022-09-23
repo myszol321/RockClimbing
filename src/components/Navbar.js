@@ -30,7 +30,7 @@ export default function Navbar(props) {
                     <h3 className="navbar--profile--text">Ustawienia</h3>
                 </Link>
                 <Link to="/loginPage">
-                    <h3 className="navbar--profile--text" onClick={props.changeLoggedIn}>Wyloguj się</h3>
+                    <h3 className="navbar--profile--text" onClick={props.logOut}>Wyloguj się</h3>
                 </Link>
             </div>
             :

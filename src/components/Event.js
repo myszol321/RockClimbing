@@ -1,8 +1,15 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import pin from '../images/pin.png'
 
 export default function Event(props) {
+    const navigate = useNavigate();
+
+    // const openEvent = () => {
+    //     navigate('/events/${props.id}')
+    // }
+
     return (
         <div className="entry">
             <div className="entry--location">
@@ -19,10 +26,8 @@ export default function Event(props) {
             </div>
             <button className="entry--join">
 
-                    <span>
-                    <Link to="/eventPage">
+                    <span onClick={props.handleClick}>
                         Czytaj więcej
-                    </Link>
                     </span>
             </button>
             <pre>{JSON.stringify(props, null, 2)}</pre>

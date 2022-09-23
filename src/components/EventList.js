@@ -13,7 +13,6 @@ export default function EventList(props) {
                     "http://localhost:4000/events/"
                 );
                 setEventData(res.data);
-                console.log(res)
             };
             fetchProducts();
     }, []);
@@ -23,6 +22,7 @@ export default function EventList(props) {
             <Event
                 key={entry.id}
                 {...entry}
+                handleClick={props.handleClick}
             />
         )
     })
@@ -36,7 +36,6 @@ export default function EventList(props) {
                 </Link>    
             </button>
             <div className="events">
-                {/* <Event data={eventData} /> */}
                 {events}
             </div>
         </div>

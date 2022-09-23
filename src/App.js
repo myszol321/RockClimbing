@@ -9,36 +9,54 @@ import AddEvent from "./components/AddEvent"
 import EditProfile from "./components/EditProfile"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
-// import AllUsers from "./components/AllUsers"
 
 export default function App() {
+
     const [userInfo, setUserInfo] = React.useState({
-        login: "",
         loggedIn: false
     })
 
-    function changeLoggedIn() {
-        console.log(userInfo)
-        setUserInfo(prevFormData => {
+    const [profilePagePath, setProfilePagePath] = React.useState(`/profilePage/0`)
+
+    const [eventPath, setEventPath] = React.useState(`/eventPath/0`)
+
+    const changeUserInfo = (data) => {
+        setUserInfo(prevUserInfo => {
             return {
-                login: userInfo.login ? "" : "dupa",
-                loggedIn: !prevFormData.loggedIn
+                ...data,
+                loggedIn: true
             }
         })
-        console.log(userInfo)
+        setProfilePagePath(`/profilePage/${data.id}`)
+    }
+
+    const logOut = () => {
+        console.log(userInfo.id)
+        setUserInfo(prevUserInfo => {
+            const newState = {}
+                Object.keys(prevUserInfo).forEach(key => {
+                    newState[key] = key === "prevUserInfo.loggedIn" ? false : '';
+                });
+                return newState
+        })
+        console.log(profilePagePath)
+    }
+
+    const changeEventPage = (id) => {
+        setEventPath(`/eventPage/${id}`)
     }
 
     return (
         <div>
-            <Navbar userInfo={userInfo} changeLoggedIn={changeLoggedIn}/>
+            <Navbar userInfo={userInfo} logOut={logOut}/>
             <div className="main-page">
                 <Routes>
-                    <Route path="/" element={<EventList />} />
-                    <Route path="/profilePage" element={<ProfilePage userInfo={userInfo}/>}/>
+                    <Route path="/" element={<EventList handleClick={changeEventPage}/>} />
+                    <Route path={profilePagePath} element={<ProfilePage userInfo={userInfo}/>}/>
                     <Route path="/addEvent" element={<AddEvent />}/>
                     <Route path="/editProfile" element={<EditProfile />}/>
-                    <Route path="/eventPage" element={<EventPage />}/>
-                    <Route path="/loginPage" element={<LoginPage logInfo={changeLoggedIn}/>}/>
+                    <Route path={eventPath} element={<EventPage eventId="1"/>}/>
+                    <Route path="/loginPage" element={<LoginPage changeUserInfo={changeUserInfo}/>}/>
                     <Route path="/registerPage" element={<RegisterPage />}/>
                 </Routes>
             </div>
