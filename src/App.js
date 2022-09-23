@@ -9,7 +9,7 @@ import AddEvent from "./components/AddEvent"
 import EditProfile from "./components/EditProfile"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
-import AllUsers from "./components/AllUsers"
+// import AllUsers from "./components/AllUsers"
 
 export default function App() {
     const [userInfo, setUserInfo] = React.useState({
@@ -33,8 +33,8 @@ export default function App() {
             <Navbar userInfo={userInfo} changeLoggedIn={changeLoggedIn}/>
             <div className="main-page">
                 <Routes>
-                    <Route path="/" element={<AllUsers />} />
-                    <Route exact path="/profilePage" element={<ProfilePage userInfo={userInfo}/>}/>
+                    <Route path="/" element={<EventList />} />
+                    <Route path="/profilePage" element={<ProfilePage userInfo={userInfo}/>}/>
                     <Route path="/addEvent" element={<AddEvent />}/>
                     <Route path="/editProfile" element={<EditProfile />}/>
                     <Route path="/eventPage" element={<EventPage />}/>

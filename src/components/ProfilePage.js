@@ -7,7 +7,7 @@ export default function ProfilePage(props) {
         <div className="profile">
             <img className="profile--photo" src={foto} alt=""/>
             <div className="profile--info">
-                <h1 className="profile--info--name">Imię i nazwisko</h1>
+                <h1 className="profile--info--name">{props.login}</h1>
                 <p className="profile--info--description">wiek, miasto</p>   
             </div>
             <div className="profile--rating">

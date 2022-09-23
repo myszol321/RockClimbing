@@ -1,10 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Event from './Event'
-import data from "../data"
+const axios = require('axios').default;
 
 export default function EventList(props) {
-    const events = data.map(entry => {
+   
+    const [eventData, setEventData] = React.useState([])
+
+    React.useEffect(() => {
+            const fetchProducts = async () => {
+                const res = await axios.get(
+                    "http://localhost:4000/events/"
+                );
+                setEventData(res.data);
+                console.log(res)
+            };
+            fetchProducts();
+    }, []);
+
+    const events = eventData.map(entry => {
         return(
             <Event
                 key={entry.id}
@@ -12,6 +26,7 @@ export default function EventList(props) {
             />
         )
     })
+
 
     return (
         <div>
@@ -21,6 +36,7 @@ export default function EventList(props) {
                 </Link>    
             </button>
             <div className="events">
+                {/* <Event data={eventData} /> */}
                 {events}
             </div>
         </div>

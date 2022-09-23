@@ -6,17 +6,16 @@ export default function Event(props) {
     return (
         <div className="entry">
             <div className="entry--location">
-                <h1 className="entry--location--title">{props.title}</h1>
+                <h1 className="entry--location--title">tytul</h1>
                 <div>
                     <img className="entry--location--pin" src={pin}/>
-                    <span className="entry--location--country">{props.country.toUpperCase()}</span>
+                    <span className="entry--location--country">{props.place}</span>
                 </div>
-                {/* <a className="entry--location--link" href={props.mapsLink} target="_blank">Otwórz Mapy Google</a> */}
             </div>
             
             <h3>{props.date}</h3>
             <div className="entry--info">
-                <p>Dodano przez: <b>Ola Myszka</b></p>
+                <p>Dodano przez: <b>{props.creator_id}</b></p>
             </div>
             <button className="entry--join">
 
@@ -26,6 +25,7 @@ export default function Event(props) {
                     </Link>
                     </span>
             </button>
+            <pre>{JSON.stringify(props, null, 2)}</pre>
         </div>
     )
 }

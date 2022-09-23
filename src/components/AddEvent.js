@@ -3,20 +3,12 @@ import { Link } from 'react-router-dom'
 
 export default function AddEvent() {
     const [formData, setFormData] = React.useState({
-        title:"",
-        location: "",
+        gym_name:"",
+        city: "",
+        date_and_time: "",
+        training_length: "",
         description: "",
-        isOneDay: false,
-        startDate: "",
-        endDate: "",
-        profile: "",
-        gear: "",
-        numberOfPeople: "",
-        climbingLevel: "",
-        trainingLength: ""
     })
-
-    const [isDisabled, setIsDisabled] = React.useState(false)
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -26,46 +18,39 @@ export default function AddEvent() {
                 [name]: type === "checkbox" ? checked : value
             }
         })
-
-        if(formData.isOneDay === true) {
-            setIsDisabled(false)
-        }
-        else {
-            setIsDisabled(true)
-        }
     }
 
     function handleSubmit(event) {
         event.preventDefault()
         
-        if(!formData.title) {
-            alert("Niepoprawny tytuł")
-        }
-        else if(!formData.location) {
-            alert("Niepoprawna lokalizacja")
-        }
-        else if(isDisabled) {
-            if(!formData.startDate) {
-                alert("Niepoprawna data")
-            }
-        }
-        else if (!formData.startDate || !formData.endDate ||
-            formData.startDate > formData.endDate) {
-            alert("Niepoprawna data")
-        }
+        // if(!formData.title) {
+        //     alert("Niepoprawny tytuł")
+        // }
+        // else if(!formData.location) {
+        //     alert("Niepoprawna lokalizacja")
+        // }
+        // else if(isDisabled) {
+        //     if(!formData.startDate) {
+        //         alert("Niepoprawna data")
+        //     }
+        // }
+        // else if (!formData.startDate || !formData.endDate ||
+        //     formData.startDate > formData.endDate) {
+        //     alert("Niepoprawna data")
+        // }
 
-        else if(!formData.description) {
-            alert("Niepoprawny opis")
-        }
-        else if(!formData.gear) {
-            alert("Niepoprawny sprzęt")
-        }
-        else if(!formData.numberOfPeople || formData.numberOfPeople < 1) {
-            alert("Niepoprawna liczba osób")
-        }
-        else {
-            alert("Dodano wydarzenie")
-        }
+        // else if(!formData.description) {
+        //     alert("Niepoprawny opis")
+        // }
+        // else if(!formData.gear) {
+        //     alert("Niepoprawny sprzęt")
+        // }
+        // else if(!formData.numberOfPeople || formData.numberOfPeople < 1) {
+        //     alert("Niepoprawna liczba osób")
+        // }
+        // else {
+        //     alert("Dodano wydarzenie")
+        // }
         console.log(formData)
     }
 
@@ -74,48 +59,41 @@ export default function AddEvent() {
             <form className="form--event" onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Tytuł"
+                    placeholder="Miejsce"
                     className="form--event--input"
-                    name="title"
-                    value={formData.title}
+                    name="gym_name"
+                    value={formData.gym_name}
                     onChange={handleChange}
                 />
 
                 <input
                     type="text"
-                    placeholder="Lokalizacja"
+                    placeholder="Miasto"
                     className="form--event--input"
-                    name="location"
-                    value={formData.location}
+                    name="city"
+                    value={formData.city}
                     onChange={handleChange}
                 />
 
-                <input
-                    type="checkbox"
-                    id="isOneDay"
-                    name="isOneDay"
-                    checked={formData.isOneDay}
-                    onChange={handleChange}
-                />
-                <label htmlFor="isOneDay">Wyjazd jednodniowy?</label>
-                <br></br>
-                <input
-                    type="datetime-local"
-                    placeholder="Data rozpoczęcia"
-                    className="form--event--input"
-                    name="startDate"
-                    value={formData.startDate}
-                    onChange={handleChange}
-                />
+                <label htmlFor="date">Data i godzina</label>
 
                 <input
                     type="datetime-local"
-                    placeholder="Data zakończenia"
+                    placeholder="Data i godzina"
                     className="form--event--input"
-                    name="endDate"
-                    value={formData.endDate}
+                    id="date"
+                    name="date_and_time"
+                    value={formData.date_and_time}
                     onChange={handleChange}
-                    disabled={isDisabled}
+                />
+                
+                <input
+                    type="text"
+                    placeholder="Długość treningu"
+                    className="form--event--input"
+                    name="training_length"
+                    value={formData.training_length}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -125,49 +103,7 @@ export default function AddEvent() {
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    placeholder="Wymagany sprzęt"
-                    className="form--event--input"
-                    name="gear"
-                    value={formData.gear}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="number"
-                    placeholder="Liczba osób"
-                    className="form--event--input"
-                    name="numberOfPeople"
-                    value={formData.numberOfPeople}
-                    onChange={handleChange}
-                    min="1"
-                    max="10"
-                />
-
-                <input
-                    type="number"
-                    placeholder="Climbing level"
-                    className="form--event--input"
-                    name="climbingLevel"
-                    value={formData.climbingLevel}
-                    onChange={handleChange}
-                    min="1"
-                    max="10"
-                />
-
-                <input
-                    type="number"
-                    placeholder="Training length"
-                    className="form--event--input"
-                    name="training length"
-                    value={formData.trainingLength}
-                    onChange={handleChange}
-                    min="1"
-                    max="10"
-                />
+                /> 
 
                 <button
                     className="form--event--button"
@@ -177,7 +113,6 @@ export default function AddEvent() {
                     </Link>        
                 </button>
             </form>
-            {/* {modal && <Modal error={modalText}/>} */}
         </div>
     )
 }
