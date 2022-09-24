@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const axios = require('axios').default;
 
-export default function EditProfile() {
+export default function EditProfile(props) {
 
     const [formData, setFormData] = React.useState({
         first_name: "",
@@ -17,27 +17,30 @@ export default function EditProfile() {
 
     const user_id = 18
 
+    // React.useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         try {
+    //             const res = await axios.get(
+    //                 `http://localhost:4000/users/${user_id}`
+    //             );
+    //             setFormData(res.data[0])
+    //             console.log(res.data)
+    //             console.log(formData)
+    //         } catch (err) {
+    //             if (err.response) {
+    //                 alert(err.response);
+    //             } else if (err.request) {
+    //                 console.log(err.request);
+    //             }
+    //         }
+    //         console.log(formData)
+    //     };
+    //     fetchProducts();
+    // }, []);
     React.useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const res = await axios.get(
-                    `http://localhost:4000/users/${user_id}`
-                );
-                setFormData(res.data[0])
-                console.log(res.data)
-                console.log(formData)
-            } catch (err) {
-                if (err.response) {
-                    alert(err.response);
-                } else if (err.request) {
-                    console.log(err.request);
-                }
-            }
-            console.log(formData)
-        };
-        fetchProducts();
-    }, []);
-
+        setFormData(props.userInfo)
+        console.log(props)
+    })
 
     function handleChange(event) {
         const {name, value} = event.target

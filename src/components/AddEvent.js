@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function AddEvent() {
+export default function AddEvent(props) {
     const [formData, setFormData] = React.useState({
+        creator_id: "",
         gym_name:"",
         city: "",
         date_and_time: "",
@@ -10,49 +11,53 @@ export default function AddEvent() {
         description: "",
     })
 
+    const navigate = useNavigate()
+
+    React.useEffect( () => {
+        setFormData(prevData => {
+            return {
+                ...prevData,
+                creator_id: props.user_id
+            }
+        })
+    }, [])
+
     function handleChange(event) {
-        const {name, value, type, checked} = event.target
+        const {name, value} = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
-                [name]: type === "checkbox" ? checked : value
+                [name]:  value
             }
         })
     }
 
     function handleSubmit(event) {
         event.preventDefault()
-        
-        // if(!formData.title) {
-        //     alert("Niepoprawny tytuł")
-        // }
-        // else if(!formData.location) {
-        //     alert("Niepoprawna lokalizacja")
-        // }
-        // else if(isDisabled) {
-        //     if(!formData.startDate) {
-        //         alert("Niepoprawna data")
-        //     }
-        // }
-        // else if (!formData.startDate || !formData.endDate ||
-        //     formData.startDate > formData.endDate) {
-        //     alert("Niepoprawna data")
-        // }
-
-        // else if(!formData.description) {
-        //     alert("Niepoprawny opis")
-        // }
-        // else if(!formData.gear) {
-        //     alert("Niepoprawny sprzęt")
-        // }
-        // else if(!formData.numberOfPeople || formData.numberOfPeople < 1) {
-        //     alert("Niepoprawna liczba osób")
-        // }
-        // else {
-        //     alert("Dodano wydarzenie")
-        // }
         console.log(formData)
-    }
+
+        const fetchedData = fetch(`http://localhost:4000/events/add`, {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(formData),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            if (response.ok) {
+                alert("Dodano wydarzenie!");
+                navigate('/');
+                return response.json();
+            } else {
+                alert(response.statusText);
+                console.log(response.statusText);
+            }
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        return fetchedData
+        }
 
     return (
         <div>
@@ -108,9 +113,7 @@ export default function AddEvent() {
                 <button
                     className="form--event--button"
                 >
-                    <Link to="/">
-                        Dodaj wydarzenie
-                    </Link>        
+                    Dodaj wydarzenie       
                 </button>
             </form>
         </div>
