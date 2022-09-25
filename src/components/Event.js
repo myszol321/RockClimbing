@@ -5,7 +5,6 @@ import pin from '../images/pin.png'
 
 export default function Event(props) {
     const navigate = useNavigate();
-    console.log(props)
     function openEvent() {
         props.handleClick(props.id);
         navigate(`/events/${props.id}`);

@@ -14,6 +14,7 @@ export default function EventPage(props) {
     const navigate = useNavigate()
 
     React.useEffect(() => {
+        console.log(props.userId)
         const fetchProducts = async () => {
             try {
                 const res = await axios.get(
@@ -22,6 +23,10 @@ export default function EventPage(props) {
                 setEventInfo(res.data[0])
                 console.log(res.data[0])
                 console.log("działa")
+
+                if(res.data[0].creator_id.toString() === props.userId.toString()) {
+                    setDisabled(true)
+                }
 
                 setEventInfo(prevData => {
                     return {
@@ -40,30 +45,76 @@ export default function EventPage(props) {
             }
         };
         fetchProducts();
-        
+
     }, []);
   
+    const fetchChangeJoin = async() => {
+        const fetchedData = await fetch(`http://localhost:4000/events/active/${props.eventId}`, {
+            method: 'PUT',
+            mode: 'cors',
+            body: JSON.stringify({second_user_id: props.userId}),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                alert(response.statusText)
+                console.log(response.statusText)
+            }
+        })
+        .then((responseJson) => {
+            console.log(responseJson[0]);
+            alert("Dolączono do wydarzenia");
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
     function toggleOption() {
         setShowOption(prevOption => !prevOption)
+        console.log(eventInfo.id)
     }
 
     const changeJoin = () => {
         console.log(props.userId)
         console.log(eventInfo.creator_id)
         console.log(eventInfo.creator_id.toString() === props.userId.toString())
-        if(eventInfo.creator_id.toString() === props.userId.toString()) {
-            setDisabled(true)
+        if(isDisabled) {
             alert("Nie możesz dołączyć do swojego wydarzenia")
         } else if (props.userId === "") {
             navigate('/loginPage')
         } else {
-            setJoined(prevState => !prevState)
+            setJoined(prevState => !prevState);
+            fetchChangeJoin()
         }
         console.log(isDisabled)
     }
 
-    function deleteEvent() {
-        navigate('/')
+    const deleteEvent = async () => {
+        console.log(props.eventId)
+        const fetchedData = await fetch(`http://localhost:4000/events/${props.eventId}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                alert(response.statusText)
+                console.log(response.statusText)
+            }
+        })
+        .then((responseJson) => {
+            console.log(responseJson[0]);
+            alert("Usunięto wydarzenie");
+            navigate('/')
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
 
     return (
@@ -82,6 +133,7 @@ export default function EventPage(props) {
                 <p>Dodano przez: <b>{eventInfo.first_name} {eventInfo.last_name}</b></p>
                 <p>Długość treningu: <b>{eventInfo.training_length}</b></p>
             </div>
+            
             {joined
             ?
             <button className={`event--joined`} onClick={changeJoin}>
@@ -93,6 +145,10 @@ export default function EventPage(props) {
             </button>
             }
             
+
+            {isDisabled
+            &&
+            <div>
             <img className="event--delete" src={trash} alt="" onClick={toggleOption}/>
             {showOption 
             && 
@@ -100,6 +156,8 @@ export default function EventPage(props) {
                 <p>Na pewno?</p>
                 <button onClick={deleteEvent}>Tak</button>
                 <button onClick={toggleOption}>Nie</button>
+            </div>
+            }
             </div>
             }
         </div>

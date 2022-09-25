@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const axios = require('axios').default;
 
 export default function EditProfile(props) {
@@ -10,37 +10,14 @@ export default function EditProfile(props) {
         age: "",
         city: "",
         description: "",
-        email: "",
-        password: "",
-        password2: ""
     })
 
-    const user_id = 18
+    const navigate = useNavigate();
 
-    // React.useEffect(() => {
-    //     const fetchProducts = async () => {
-    //         try {
-    //             const res = await axios.get(
-    //                 `http://localhost:4000/users/${user_id}`
-    //             );
-    //             setFormData(res.data[0])
-    //             console.log(res.data)
-    //             console.log(formData)
-    //         } catch (err) {
-    //             if (err.response) {
-    //                 alert(err.response);
-    //             } else if (err.request) {
-    //                 console.log(err.request);
-    //             }
-    //         }
-    //         console.log(formData)
-    //     };
-    //     fetchProducts();
-    // }, []);
     React.useEffect(() => {
         setFormData(props.userInfo)
         console.log(props)
-    })
+    }, [])
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -54,7 +31,7 @@ export default function EditProfile(props) {
     
     function handleSubmit(event) {
         event.preventDefault()
-            const fetchedData = fetch(`http://localhost:4000/users/edit`, {
+            const fetchedData = fetch(`http://localhost:4000/users/${formData.id}`, {
                 method: 'PUT',
                 mode: 'cors',
                 body: JSON.stringify(formData),
@@ -62,8 +39,8 @@ export default function EditProfile(props) {
             })
             .then((response) => {
                 if (response.ok) {
-                    alert("Zarejestrowano poprawnie");
-                    // navigate('/loginPage')
+                    alert("Zaktualizowano");
+                    navigate(`/profilePage/${formData.id}`)
                     return response.json()
                 } else {
                     alert(response.statusText)
@@ -123,39 +100,12 @@ export default function EditProfile(props) {
                 onChange={handleChange}
                 contenteditable
             />
-
-            <input 
-                type="email"
-                className="form--register--input" 
-                placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-            />
-
-            <input 
-                type="password"
-                className="form--register--input"
-                placeholder="Hasło"
-                name="password"
-                value={formData.password}
-                onChange={handleChange} 
-            />
-            
-            <input 
-                type="password" 
-                placeholder="Ponów hasło"
-                className="form--register--input"
-                name="password2"
-                value={formData.password2}
-                onChange={handleChange}
-            />
             
                 <button
                     type="submit"
                     className="form--register--button"
                 >
-                    Zarejestruj się
+                    Zaktualizuj dane
                 </button>
         </form>
     )
