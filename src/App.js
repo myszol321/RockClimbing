@@ -20,7 +20,7 @@ export default function App() {
     const [profilePagePath, setProfilePagePath] = React.useState(`/profilePage/0`)
 
     const [eventPath, setEventPath] = React.useState(`/events/1`)
-    const [eventId, setEventId] = React.useState(`1`)
+    const [eventId, setEventId] = React.useState("1")
 
     const changeUserInfo = (data) => {
         setUserInfo(prevUserInfo => {
@@ -30,6 +30,7 @@ export default function App() {
             }
         })
         setProfilePagePath(`/profilePage/${data.id}`)
+        console.log(data.id)
     }
 
     const logOut = () => {
@@ -57,7 +58,7 @@ export default function App() {
             <Navbar userInfo={userInfo} logOut={logOut}/>
             <div className="main-page">
                 <Routes>
-                    <Route path="/" element={<EventList handleClick={changeEventPage}/>} />
+                    <Route path="/" element={<EventList userId={userInfo.id} handleClick={changeEventPage}/>} />
                     <Route path={profilePagePath} element={<ProfilePage userInfo={userInfo}/>}/>
                     <Route path="/addEvent" element={<AddEvent creator_id={userInfo.id}/>}/>
                     <Route path="/editProfile" element={<EditProfile userInfo={userInfo}/>}/>

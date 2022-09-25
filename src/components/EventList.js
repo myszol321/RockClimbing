@@ -30,11 +30,16 @@ export default function EventList(props) {
 
     return (
         <div>
+            {props.userId
+            ?
             <button className="button--add-event">
                 <Link to="/addEvent">
                     + Dodaj własne wydarzenie
                 </Link>    
             </button>
+            :
+            <p></p>
+            }
             <div className="events">
                 {events}
             </div>

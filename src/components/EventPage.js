@@ -21,7 +21,7 @@ export default function EventPage(props) {
                 );
                 setEventInfo(res.data[0])
                 console.log(res.data[0])
-                console.log(res.data[0].date_and_time)
+                console.log("działa")
 
                 setEventInfo(prevData => {
                     return {
@@ -32,6 +32,7 @@ export default function EventPage(props) {
                 })
             } catch (err) {
                 if (err.response) {
+                    console.log("nie dziala")
                     alert(err.response);
                 } else if (err.request) {
                     console.log(err.request);
@@ -78,7 +79,7 @@ export default function EventPage(props) {
             <h3>{eventInfo.date_and_time}</h3>
             <p></p>
             <div className="event--info">
-                <p>Dodano przez: <b>{eventInfo.creator_id}</b></p>
+                <p>Dodano przez: <b>{eventInfo.first_name} {eventInfo.last_name}</b></p>
                 <p>Długość treningu: <b>{eventInfo.training_length}</b></p>
             </div>
             {joined

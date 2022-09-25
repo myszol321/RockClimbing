@@ -5,7 +5,7 @@ import pin from '../images/pin.png'
 
 export default function Event(props) {
     const navigate = useNavigate();
-
+    console.log(props)
     function openEvent() {
         props.handleClick(props.id);
         navigate(`/events/${props.id}`);
@@ -25,7 +25,7 @@ export default function Event(props) {
             
             <h3>{date}</h3>
             <div className="entry--info">
-                <p>Dodano przez: <b>{props.creator_id}</b></p>
+                <p>Dodano przez: <b>{props.first_name}</b></p>
             </div>
             <button className="entry--join">
                     <span onClick={openEvent}>

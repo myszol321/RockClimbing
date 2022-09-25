@@ -6,7 +6,7 @@ const axios = require('axios').default;
 export default function LoginPage(props) {
 
     const [formData, setFormData] = React.useState({
-        login:"",
+        email:"",
         password: ""
     })
 
@@ -22,55 +22,70 @@ export default function LoginPage(props) {
         })
     }
 
-    const getUserInfo = async (login) => {
-        try {
-            const res = await axios.get(
-                `http://localhost:4000/users/${login}`
-            );
-            props.changeUserInfo(res.data[0])
-            console.log('co to za data')
-            console.log(res.data[0])
-        } catch (err) {
-            if (err.response) {
-                alert(err.response);
-            } else if (err.request) {
-                console.log(err.request);
-            }
-        }
-    };
-    
-    // function sendUserData() {
-    //     const fetchedData = fetch(`http://localhost:4000/users/login`, {
-    //         method: 'POST',
-    //         mode: 'cors',
-    //         body: JSON.stringify(formData),
-    //         headers: { "Content-Type": "application/json" }
-    //     })
-    //     .then((response) => {
-    //         if (response.ok) {
-    //             alert("Zalogowano pomyślnie");
-
-    //             getUserInfo(formData.login);
-
-    //             navigate('/profilePage')
-    //             return response.json()
-    //         } else {
-    //             alert(response.statusText)
-    //             console.log(response.statusText)
+    // const getUserInfo = async (login) => {
+    //     try {
+    //         const res = await axios.get(
+    //             `http://localhost:4000/users/${login}`
+    //         );
+    //         props.changeUserInfo(res.data[0])
+    //         console.log('co to za data')
+    //         console.log(res.data[0])
+    //     } catch (err) {
+    //         if (err.response) {
+    //             alert(err.response);
+    //         } else if (err.request) {
+    //             console.log(err.request);
     //         }
-    //     })
-    //     .catch((error) => {
-    //         console.log(error)
-    //     })
-    //     return fetchedData
+    //     }
+    // }
+    
+    const sendUserData = async() => {
+        const fetchedData = await fetch(`http://localhost:4000/users/login`, {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(formData),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                alert(response.statusText)
+                console.log(response.statusText)
+            }
+        })
+        .then((responseJson) => {
+            console.log(responseJson[0]);
+            props.changeUserInfo(responseJson[0]);
+            alert("Zalogowano pomyślnie");
+            navigate(`/profilePage/${responseJson[0].id}`, { replace: true})
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    // function sendUserData() {
+    //     const fetchProducts = async () => {
+
+    //         const res = await axios.get(
+    //             "http://localhost:4000/users/login"
+    //         );
+
+
+            
+    //         console.log(res)
+    //         console.log(res.data)
+    //     };
+    //     fetchProducts();
     // }
 
     function handleSubmit(event) {
-        const number = 21
         event.preventDefault()
-        getUserInfo(number);
-        alert("Zalogowano!")
-        navigate(`/profilePage/${number}`)
+        sendUserData();
+
+        // alert("Zalogowano!")
+        // navigate(`/profilePage/${21}`)
     }
 
     return (
@@ -79,8 +94,8 @@ export default function LoginPage(props) {
                 type="text" 
                 placeholder="Nazwa użytkownika"
                 className="form--login--input"
-                name="login"
-                value={formData.login}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
             />
 

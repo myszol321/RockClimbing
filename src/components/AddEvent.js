@@ -14,12 +14,14 @@ export default function AddEvent(props) {
     const navigate = useNavigate()
 
     React.useEffect( () => {
+        console.log(props.user_id)
         setFormData(prevData => {
             return {
                 ...prevData,
                 creator_id: props.user_id
             }
         })
+        
     }, [])
 
     function handleChange(event) {
