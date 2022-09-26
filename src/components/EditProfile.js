@@ -40,7 +40,8 @@ export default function EditProfile(props) {
             .then((response) => {
                 if (response.ok) {
                     alert("Zaktualizowano");
-                    navigate(`/profilePage/${formData.id}`)
+                    props.changeUserInfo(formData);
+                    navigate(`/profilePage`)
                     return response.json()
                 } else {
                     alert(response.statusText)

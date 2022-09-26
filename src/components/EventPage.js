@@ -2,6 +2,7 @@ import React from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import pin from '../images/pin.png'
 import trash from '../images/trash.png'
+import pencil from '../images/pencil.png'
 const axios = require('axios').default;
 
 export default function EventPage(props) {
@@ -78,9 +79,6 @@ export default function EventPage(props) {
     }
 
     const changeJoin = () => {
-        console.log(props.userId)
-        console.log(eventInfo.creator_id)
-        console.log(eventInfo.creator_id.toString() === props.userId.toString())
         if(isDisabled) {
             alert("Nie możesz dołączyć do swojego wydarzenia")
         } else if (props.userId === "") {
@@ -89,7 +87,6 @@ export default function EventPage(props) {
             setJoined(prevState => !prevState);
             fetchChangeJoin()
         }
-        console.log(isDisabled)
     }
 
     const deleteEvent = async () => {
@@ -117,6 +114,10 @@ export default function EventPage(props) {
         })
     }
 
+    const goToEdit = () => {
+        navigate('/editEvent')
+    }
+
     return (
         <div className="event">
             <div className="event--location">
@@ -140,7 +141,7 @@ export default function EventPage(props) {
                     Wzięto udział!
             </button>
             :
-            <button className={`event--join`} onClick={changeJoin} disabled={isDisabled}>
+            <button className={`event--join`} onClick={changeJoin}>
                     <span>Dołącz do wydarzenia</span>
             </button>
             }
@@ -149,15 +150,16 @@ export default function EventPage(props) {
             {isDisabled
             &&
             <div>
-            <img className="event--delete" src={trash} alt="" onClick={toggleOption}/>
-            {showOption 
-            && 
-            <div className="event--delete--options">
-                <p>Na pewno?</p>
-                <button onClick={deleteEvent}>Tak</button>
-                <button onClick={toggleOption}>Nie</button>
-            </div>
-            }
+                <img className="event--edit" src={pencil} alt="" onClick={goToEdit} />
+                <img className="event--delete" src={trash} alt="" onClick={toggleOption}/>
+                {showOption 
+                && 
+                <div className="event--delete--options">
+                    <p>Na pewno?</p>
+                    <button onClick={deleteEvent}>Tak</button>
+                    <button onClick={toggleOption}>Nie</button>
+                </div>
+                }
             </div>
             }
         </div>

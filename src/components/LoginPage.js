@@ -21,23 +21,6 @@ export default function LoginPage(props) {
             }
         })
     }
-
-    // const getUserInfo = async (login) => {
-    //     try {
-    //         const res = await axios.get(
-    //             `http://localhost:4000/users/${login}`
-    //         );
-    //         props.changeUserInfo(res.data[0])
-    //         console.log('co to za data')
-    //         console.log(res.data[0])
-    //     } catch (err) {
-    //         if (err.response) {
-    //             alert(err.response);
-    //         } else if (err.request) {
-    //             console.log(err.request);
-    //         }
-    //     }
-    // }
     
     const sendUserData = async() => {
         const fetchedData = await fetch(`http://localhost:4000/users/login`, {
@@ -58,7 +41,7 @@ export default function LoginPage(props) {
             console.log(responseJson[0]);
             props.changeUserInfo(responseJson[0]);
             alert("Zalogowano pomyślnie");
-            navigate(`/profilePage/${responseJson[0].id}`, { replace: true})
+            navigate(`/profilePage`)
         })
         .catch((error) => {
             console.log(error)

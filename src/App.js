@@ -9,6 +9,7 @@ import AddEvent from "./components/AddEvent"
 import EditProfile from "./components/EditProfile"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
+import EditEvent from "./components/EditEvent"
 
 export default function App() {
 
@@ -59,12 +60,14 @@ export default function App() {
             <div className="main-page">
                 <Routes>
                     <Route path="/" element={<EventList userId={userInfo.id} handleClick={changeEventPage}/>} />
-                    <Route path={profilePagePath} element={<ProfilePage userInfo={userInfo}/>}/>
+                    <Route path="/profilePage" element={<ProfilePage userInfo={userInfo}/>}/>
                     <Route path="/addEvent" element={<AddEvent creator_id={userInfo.id}/>}/>
-                    <Route path="/editProfile" element={<EditProfile userInfo={userInfo}/>}/>
+                    <Route path="/editProfile" element={<EditProfile userInfo={userInfo} changeUserInfo={changeUserInfo}/>}/>
                     <Route path={eventPath} element={<EventPage eventId={eventId} userId={userInfo.id}/>}/>
                     <Route path="/loginPage" element={<LoginPage changeUserInfo={changeUserInfo}/>}/>
                     <Route path="/registerPage" element={<RegisterPage />}/>
+                    <Route path="/editEvent" element={<EditEvent eventId={eventId}/>}/>
+                    {/* <Route path="/profilePage/:id" */}
                 </Routes>
             </div>
         </div>
