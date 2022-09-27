@@ -221,9 +221,6 @@ body {
     background-color: #e23e3e;
 }
 
-.event--join {
-    content: "dupa";
-}
 .event--delete {
     position: absolute;
     top: 10px;
