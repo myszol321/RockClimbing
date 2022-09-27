@@ -45,6 +45,7 @@ export default function EditEvent(props) {
                 [name]: value
             }
         })
+        console.log(formData)
     }
     
     function handleSubmit(event) {

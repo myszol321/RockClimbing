@@ -1,15 +1,67 @@
 import React from 'react'
 import foto from '../images/foto.png'
-import EventList from './EventList'
+import UserEventList from './EventList'
+import Event from './Event'
+// const axios = require('axios').default;
 
 export default function ProfilePage(props) {
+    
+    const [userInfo, setUserInfo] = React.useState({
+        first_name: "dupa",
+        last_name: "cipa"
+    })
+
+    const [eventData, setEventData] = React.useState([])
+
+    React.useEffect(() => {
+        async function setAll() {
+            const pathname = window.location.pathname.toString()
+            const profileId = pathname.slice(13)
+            if(props.userInfo.id.toString() === profileId) {
+                setUserInfo(props.userInfo)
+
+                const response_events1 = await fetch(`http://localhost:4000/events/user/${profileId}`)
+                const data_events1 = await response_events1.json()
+                const events = data_events1.map(entry => {
+                    return(
+                        <Event
+                            key={entry.id}
+                            {...entry}
+                            handleClick={props.handleClick}
+                        />
+                    )
+                })
+                setEventData(events)
+
+            } 
+            else {
+                const response_user2 = await fetch(`http://localhost:4000/users/${profileId}`)
+                const data_user2 = await response_user2.json()
+                setUserInfo(data_user2[0])
+
+                const response_events2 = await fetch(`http://localhost:4000/events/user/${profileId}`)
+                const data_events2 = await response_events2.json()
+                const events = data_events2.map(entry => {
+                    return(
+                        <Event
+                            key={entry.id}
+                            {...entry}
+                            handleClick={props.handleClick}
+                        />
+                    )
+                })
+                setEventData(events)
+            }
+        }
+        setAll();
+    }, [])
 
     return (
         <div className="profile">
             <img className="profile--photo" src={foto} alt=""/>
             <div className="profile--info">
-                <h1 className="profile--info--name">{props.userInfo.first_name} {props.userInfo.last_name}</h1>
-                <p className="profile--info--description">{props.userInfo.age}, {props.userInfo.city}</p>   
+                <h1 className="profile--info--name">{userInfo.first_name} {userInfo.last_name}</h1>
+                <p className="profile--info--description">{userInfo.age}, {userInfo.city}</p>   
             </div>
             <div className="profile--rating">
                 <div className="profile--rating--stars">
@@ -28,22 +80,14 @@ export default function ProfilePage(props) {
             </div>
             
             <p className="profile--description">
-                {props.userInfo.description}
+                {userInfo.description}
             </p>
-            
-            <div className="profile--equipment">
-                <h2>Posiadany sprzęt:</h2>
-                <ul>
-                    <li>lina</li>
-                    <li>lina</li>
-                    <li>lina</li>
-                    <li>lina</li>
-                </ul>
-            </div>
             
             <div className="profile--events">
                 <h2>Utworzone wydarzenia</h2>
-                <EventList />
+                <div className="events">
+                    {eventData}
+                </div>
             </div>
         </div>
     )

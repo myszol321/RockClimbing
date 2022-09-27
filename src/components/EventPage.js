@@ -36,6 +36,18 @@ export default function EventPage(props) {
                                         + ' ' + JSON.stringify(res.data[0].date_and_time).slice(12, 17)
                     }
                 })
+
+                if(!res.data[0].is_active) {
+                    if(res.data[0].second_user_id.toString() === props.userId.toString()) {
+                        setJoined(true)
+                    } else {
+                        setJoined(false)
+                    }
+                } else {
+                    setJoined(false)
+                }
+
+
             } catch (err) {
                 if (err.response) {
                     console.log("nie dziala")
@@ -50,7 +62,13 @@ export default function EventPage(props) {
     }, []);
   
     const fetchChangeJoin = async() => {
-        const fetchedData = await fetch(`http://localhost:4000/events/active/${props.eventId}`, {
+        var url = ""
+        if(!joined) {
+            url = `http://localhost:4000/events/notactive/${props.eventId}`
+        } else {
+            url = `http://localhost:4000/events/active/${props.eventId}`
+        }
+        const fetchedData = await fetch(url, {
             method: 'PUT',
             mode: 'cors',
             body: JSON.stringify({second_user_id: props.userId}),
@@ -64,10 +82,6 @@ export default function EventPage(props) {
                 console.log(response.statusText)
             }
         })
-        .then((responseJson) => {
-            console.log(responseJson[0]);
-            alert("Dolączono do wydarzenia");
-        })
         .catch((error) => {
             console.log(error)
         })
@@ -79,14 +93,17 @@ export default function EventPage(props) {
     }
 
     const changeJoin = () => {
+        console.log(joined)
         if(isDisabled) {
             alert("Nie możesz dołączyć do swojego wydarzenia")
         } else if (props.userId === "") {
             navigate('/loginPage')
         } else {
-            setJoined(prevState => !prevState);
-            fetchChangeJoin()
+            fetchChangeJoin();
+            setJoined(prevState => !prevState)
         }
+        console.log(joined)
+
     }
 
     const deleteEvent = async () => {
@@ -115,7 +132,12 @@ export default function EventPage(props) {
     }
 
     const goToEdit = () => {
-        navigate('/editEvent')
+        navigate('/editEvent');
+    }
+
+    const goToProfile = () => {
+        props.changeProfilePath(eventInfo.creator_id)
+        navigate(`/profilePage/${eventInfo.creator_id}`)
     }
 
     return (
@@ -131,7 +153,7 @@ export default function EventPage(props) {
             <h3>{eventInfo.date_and_time}</h3>
             <p></p>
             <div className="event--info">
-                <p>Dodano przez: <b>{eventInfo.first_name} {eventInfo.last_name}</b></p>
+                <p className="event--info--profile" onClick={goToProfile}>Dodano przez: <b>{eventInfo.first_name} {eventInfo.last_name}</b></p>
                 <p>Długość treningu: <b>{eventInfo.training_length}</b></p>
             </div>
             

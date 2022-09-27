@@ -41,7 +41,7 @@ export default function LoginPage(props) {
             console.log(responseJson[0]);
             props.changeUserInfo(responseJson[0]);
             alert("Zalogowano pomyślnie");
-            navigate(`/profilePage`)
+            navigate(`/profilePage/${responseJson[0].id}`)
         })
         .catch((error) => {
             console.log(error)
