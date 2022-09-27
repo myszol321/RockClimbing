@@ -6,10 +6,7 @@ import Event from './Event'
 
 export default function ProfilePage(props) {
     
-    const [userInfo, setUserInfo] = React.useState({
-        first_name: "dupa",
-        last_name: "cipa"
-    })
+    const [userInfo, setUserInfo] = React.useState({})
 
     const [eventData, setEventData] = React.useState([])
 
@@ -35,12 +32,14 @@ export default function ProfilePage(props) {
 
             } 
             else {
+                console.log(profileId)
                 const response_user2 = await fetch(`http://localhost:4000/users/${profileId}`)
                 const data_user2 = await response_user2.json()
                 setUserInfo(data_user2[0])
 
                 const response_events2 = await fetch(`http://localhost:4000/events/user/${profileId}`)
                 const data_events2 = await response_events2.json()
+                console.log(data_events2)
                 const events = data_events2.map(entry => {
                     return(
                         <Event

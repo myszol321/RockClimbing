@@ -11,6 +11,7 @@ export default function EventPage(props) {
     const [showOption, setShowOption] = React.useState(false)
     const [joined, setJoined] = React.useState(false)
     const [isDisabled, setDisabled] = React.useState(false)
+    const [buttonText, setButtonText] = React.useState('Wzięto udział!')
 
     const navigate = useNavigate()
 
@@ -61,6 +62,18 @@ export default function EventPage(props) {
 
     }, []);
   
+    React.useEffect(() => {
+        var timer;
+        if(joined) {
+            timer = setTimeout(() => {
+            setButtonText('Anuluj udział')
+        }, 3000);
+        } else {
+            setButtonText('Wzięto udział w wydarzeniu!')
+        }
+        return () => clearTimeout(timer);
+    }, [joined])
+
     const fetchChangeJoin = async() => {
         var url = ""
         if(!joined) {
@@ -159,11 +172,11 @@ export default function EventPage(props) {
             
             {joined
             ?
-            <button className={`event--joined`} onClick={changeJoin}>
-                    Wzięto udział!
+            <button className="event--joined" onClick={changeJoin}>
+                    <span>{buttonText}</span>
             </button>
             :
-            <button className={`event--join`} onClick={changeJoin}>
+            <button className="event--join" onClick={changeJoin}>
                     <span>Dołącz do wydarzenia</span>
             </button>
             }

@@ -68,7 +68,7 @@ export default function App() {
                     <Route path="/" element={<EventList userId={userInfo.id}  handleClick={changeEventPage}/>} />
                     <Route path={profilePagePath} element={<ProfilePage userInfo={userInfo} handleClick={changeEventPage}/>}/>
                     <Route path="/addEvent" element={<AddEvent creator_id={userInfo.id}/>}/>
-                    <Route path="/editProfile" element={<EditProfile userInfo={userInfo} changeUserInfo={changeUserInfo}/>}/>
+                    <Route path="/editProfile" element={<EditProfile userInfo={userInfo} changeUserInfo={changeUserInfo} changeProfilePath={changeProfilePath}/>}/>
                     <Route path={eventPath} element={<EventPage eventId={eventId} userId={userInfo.id} changeProfilePath={changeProfilePath}/>}/>
                     <Route path="/loginPage" element={<LoginPage changeUserInfo={changeUserInfo}/>}/>
                     <Route path="/registerPage" element={<RegisterPage />}/>
