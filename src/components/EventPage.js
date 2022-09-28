@@ -155,21 +155,23 @@ export default function EventPage(props) {
 
     return (
         <div className="event">
-            <div className="event--location">
+            <div className="event--info">
+                <div className="entry--location">
                 <h1 className="event--location--title">{eventInfo.gym_name}</h1>
                 <div>
                     <img className="event--location--pin" src={pin} alt=""/>
                     <span className="event--location--country">{eventInfo.city}</span>
+                </div>   
+            
+                <h3 className="event--date">{eventInfo.date_and_time}</h3>
                 </div>
-            </div>
-            <p className="event--description">{eventInfo.description}</p>    
-            <h3>{eventInfo.date_and_time}</h3>
-            <p></p>
-            <div className="event--info">
+                <br></br>
                 <p className="event--info--profile" onClick={goToProfile}>Dodano przez: <b>{eventInfo.first_name} {eventInfo.last_name}</b></p>
                 <p>Długość treningu: <b>{eventInfo.training_length}</b></p>
             </div>
             
+            <p className="event--description">{eventInfo.description}</p> 
+
             {joined
             ?
             <button className="event--joined" onClick={changeJoin}>

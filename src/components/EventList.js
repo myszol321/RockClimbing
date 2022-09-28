@@ -7,28 +7,28 @@ export default function EventList(props) {
    
     const [eventData, setEventData] = React.useState([])
 
-    React.useEffect(() => {
-        console.log(props.currentUserId);
-        const pathname = window.location.pathname;
-            const fetchProducts = async () => {
-                if(pathname==='/'){
-                    const res = await axios.get(
-                        "http://localhost:4000/events/"
-                    );
-                    console.log("wszystkie eventy")
-                    console.log(res.data)
-                    setEventData(res.data);
-                } else {
-                    const res = await axios.get(
-                        `http://localhost:4000/events/user/${props.currentUserId}`
-                    );
-                    console.log(res.data)
-                    console.log("swoje eventy")
+    const pathname = window.location.pathname;
 
-                    setEventData(res.data);
-                }
-            };
-            fetchProducts();
+    React.useEffect(() => {
+        const fetchProducts = async () => {
+            if(pathname==='/'){
+                const res = await axios.get(
+                    "http://localhost:4000/events/"
+                );
+                console.log("wszystkie eventy")
+                console.log(res.data)
+                setEventData(res.data);
+            } else {
+                const res = await axios.get(
+                    `http://localhost:4000/events/user/${props.currentUserId}`
+                );
+                console.log(res.data)
+                console.log("swoje eventy")
+
+                setEventData(res.data);
+            }
+        };
+        fetchProducts();
     }, []);
 
     const events = eventData.map(entry => {
@@ -45,18 +45,23 @@ export default function EventList(props) {
     return (
         <div>
             {props.userId
-            ?
+            &&
             <button className="button--add-event">
                 <Link to="/addEvent">
                     + Dodaj własne wydarzenie
                 </Link>    
             </button>
-            :
-            <p></p>
             }
+            {pathname==='/'
+            ?
             <div className="events">
                 {events}
             </div>
+            :
+            <div className="profile--events">
+                {events}
+            </div>
+            }
         </div>
     )
 }

@@ -103,8 +103,7 @@ export default function AddEvent(props) {
                     onChange={handleChange}
                 />
 
-                <input
-                    type="text"
+                <textarea
                     placeholder="Opis"
                     className="form--event--input"
                     name="description"

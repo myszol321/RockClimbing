@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import profileIcon from "../images/profile-icon.png"
 import Event from './Event'
 
@@ -7,6 +8,8 @@ export default function ProfilePage(props) {
     const [userInfo, setUserInfo] = React.useState({})
     const [rating, setRating] = React.useState("")
     const [eventData, setEventData] = React.useState([])
+
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         async function setAll() {
@@ -48,6 +51,8 @@ export default function ProfilePage(props) {
 
         if(userInfo.id === props.userInfo.id) {
             alert('Nie możesz ocenić siebie')
+        } else if(props.userInfo.id === "") {
+            navigate(`/loginPage`)
         } else {
             const fetchedData = fetch(`http://localhost:4000/users/${userInfo.id}/stars`, {
                 method: 'POST',
@@ -105,7 +110,7 @@ export default function ProfilePage(props) {
             
             <div className="profile--events">
                 <h2>Utworzone wydarzenia</h2>
-                <div className="events">
+                <div className="profile-events">
                     {eventData}
                 </div>
             </div>

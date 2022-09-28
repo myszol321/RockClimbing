@@ -99,7 +99,6 @@ export default function RegisterPage() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                contenteditable
             />
 
             <input 
