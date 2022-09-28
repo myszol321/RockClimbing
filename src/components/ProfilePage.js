@@ -1,5 +1,5 @@
 import React from 'react'
-import foto from '../images/foto.png'
+import profileIcon from "../images/profile-icon.png"
 import Event from './Event'
 
 export default function ProfilePage(props) {
@@ -78,7 +78,7 @@ export default function ProfilePage(props) {
 
     return (
         <div className="profile">
-            <img className="profile--photo" src={foto} alt=""/>
+            <img className="profile--photo" src={profileIcon} alt=""/>
             <div className="profile--info">
                 <h1 className="profile--info--name">{userInfo.first_name} {userInfo.last_name}</h1>
                 <p className="profile--info--description">{userInfo.age}, {userInfo.city}</p>   
