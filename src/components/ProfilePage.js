@@ -23,9 +23,10 @@ export default function ProfilePage(props) {
                 const data_user = await response_user.json()
                 setUserInfo(data_user[0])
             }
-
+                console.log(profileId)
                 const response_events = await fetch(`http://localhost:4000/events/user/${profileId}`)
                 const data_events = await response_events.json()
+                console.log(data_events)
                 const events = data_events.map(entry => {
                     return(
                         <Event
@@ -109,7 +110,7 @@ export default function ProfilePage(props) {
             </p>
             
             <div className="profile--events">
-                <h2>Utworzone wydarzenia</h2>
+                <h2>Wydarzenia</h2>
                 <div className="profile-events">
                     {eventData}
                 </div>

@@ -116,7 +116,6 @@ body {
     .events > * {
         width: 100%;
         min-width: 450px;
-        background-color: blue;
     }
 }
 
